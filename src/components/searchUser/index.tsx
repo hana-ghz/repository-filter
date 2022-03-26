@@ -25,6 +25,7 @@ const URL = "https://api.github.com/users";
 
 const SearchUser = ({onUserSearch}:IProps) => {
   const classes = useStyles({});
+  
 
   const {
     handleSubmit,
@@ -46,9 +47,10 @@ const SearchUser = ({onUserSearch}:IProps) => {
   return (
     <form onSubmit={handleSubmit(getUser)}>
       <Grid container
-        direction="column"
+        direction="row"
         justifyContent="center"
         alignItems="center"
+        spacing={2}
       >
         <Grid item >
           <Controller

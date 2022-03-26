@@ -1,4 +1,6 @@
 import React from "react";
+// @mui
+import { Grid } from "@material-ui/core";
 
 // @logic
 // @local
@@ -14,11 +16,16 @@ const RepositoryPage = () => {
   const getUsername = (user: string) => {
     setUsername(user)
   }
-  return (
-    <div className={classes.container}>
-      <SearchUser onUserSearch={getUsername}/>
-      <RepositoryList username={username}/>
-    </div>
+  return ( 
+    <Grid container className={classes.container}>
+      <Grid item xs={12}>
+        <SearchUser onUserSearch={getUsername}/>
+
+      </Grid>
+      <Grid item xs={12}>
+        <RepositoryList username={username}/>
+      </Grid>
+    </Grid>
   );
 };
 
