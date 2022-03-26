@@ -7,7 +7,7 @@ const useStyles = makeStyles({
     container: {
         justifyContent: 'center',
         alignItems: 'center',
-        height:'10%'
+        marginTop:'20px',
     },
    
     

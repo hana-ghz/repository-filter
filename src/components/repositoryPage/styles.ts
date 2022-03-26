@@ -24,10 +24,7 @@ const useStyles = makeStyles(()=> createStyles({
         padding: "35px",
     },
   },
-  updateAt: {
-    color: "#A0A3A8",
-    fontSize: "8px",
-  },
+ 
 }),
 );
 

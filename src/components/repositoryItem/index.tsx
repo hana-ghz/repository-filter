@@ -47,12 +47,12 @@ const RepositoryItem = ({ repository }: IProps) => {
   return (
     <Grid container spacing={1}>
       <Grid container item xs={12} >
-        <Grid item xs={8}>
+        <Grid item xs={12} md={8}>
           <Typography variant="h6" className={classes.repoTitle}>
             {repository.name}
           </Typography>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4}>
           <Typography variant="caption" className={classes.updatedAt}>
             Updated on {format(repository.updated_at, "PP")}
           </Typography>
