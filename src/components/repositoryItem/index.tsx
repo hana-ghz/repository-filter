@@ -1,73 +1,73 @@
 import React from "react";
-import axios from 'axios';
-
+import axios, { AxiosResponse } from "axios";
 
 // @logic
 
 // @material-ui
-import {
-
-  Grid, Typography,
-  
-} from "@material-ui/core";
+import { Divider, Grid, Typography } from "@material-ui/core";
 
 // @local
 import useStyles from "./styles";
-
+import { string } from "yup/lib/locale";
+import { format } from "date-fns";
 
 interface IRepository {
-    name: string;
-    visibility: string;
-    description: string;
-    updated_at: Date;
-    default_branch: string;
-    languages_url: string;
-};
-  
-interface IProps { repository: IRepository};
+  name: string;
+  visibility: string;
+  description: string;
+  updated_at: Date;
+  default_branch: string;
+  languages_url: string;
+}
 
-const RepositoryItem = ({repository}: IProps) => {
-    const classes = useStyles({});
-    const [mostUsedLanguage, setMostUsedLanguage] = React.useState('')
+interface IProps {
+  repository: IRepository;
+}
+interface IResult {
+  [key: string]: Number;
+}
 
-    const getMostUsedLanguages = async () => {
-        await axios.get(repository.languages_url).then((result) => {
-            //const max = Math.max(...Object.values(result.data))
+const RepositoryItem = ({ repository }: IProps) => {
+  const classes = useStyles({});
+  const [mostUsedLanguage, setMostUsedLanguage] = React.useState("");
 
-            setMostUsedLanguage (Object.keys(result.data)[0]);
-           
-        });
-    }
-        
-    React.useEffect(() => {   
-        getMostUsedLanguages();
-    }, [repository]);
+  const getMostUsedLanguages = async () => {
+    await axios.get<IResult>(repository.languages_url).then((result) => {
+      const maxTuple = Object.entries(result.data).reduce((e, v) =>
+        e[1] > v[1] ? e : v
+      );
+      setMostUsedLanguage(maxTuple[0]);
+    });
+  };
+
+  React.useEffect(() => {
+    getMostUsedLanguages();
+  }, [repository]);
 
   return (
-    <Grid container >
-        <Grid item xs={12}>
-            <Typography variant="h6" className={classes.repoTitle}>
-                {repository.name}
-            </Typography>
+    <Grid container spacing={1}>
+      <Grid container item xs={12} >
+        <Grid item xs={8}>
+          <Typography variant="h6" className={classes.repoTitle}>
+            {repository.name}
+          </Typography>
         </Grid>
-        <Grid item xs={12}>
-            <Typography  variant="subtitle2">
-                {repository.description}
-            </Typography>
+        <Grid item xs={4}>
+          <Typography variant="caption" className={classes.updatedAt}>
+            Updated on {format(repository.updated_at, "PP")}
+          </Typography>
         </Grid>
-        <Grid item container xs={12}>
-            <Grid item xs={6}>
-                <Typography  variant="caption">
-                    {mostUsedLanguage}
-                </Typography>
-            </Grid>
-            <Grid item xs={6}>
-                <Typography variant="caption">
-                    updated {repository.updated_at.getTime()}
-                </Typography>
-            </Grid>
-        </Grid>
+      </Grid>
 
+      <Grid item xs={12}>
+        <Typography variant="subtitle2">{repository.description}</Typography>
+      </Grid>
+
+      <Grid item xs={6}>
+        <Typography variant="caption" className={classes.language}>{mostUsedLanguage}</Typography>
+      </Grid>
+
+     
     </Grid>
   );
 };

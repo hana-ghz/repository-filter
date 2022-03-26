@@ -1,4 +1,6 @@
+import { TextField } from '@material-ui/core';
 import { makeStyles, createStyles } from '@mui/styles';
+import { theme } from '../repositoryPage/styles';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const useStyles = makeStyles({
@@ -11,6 +13,13 @@ const useStyles = makeStyles({
         letterSpacing: '0.15px',
         '&.MuiButton-root': {
             backgroundColor: '#539BF5',
+            minHeight: '50px',
+            minWidth: '200px',
+                [theme.breakpoints.down('sm')]: {
+                    minWidth: '100%',
+
+                },
+            
         },
         '&.MuiButton-root.MuiButton-text': {
             color: 'white',
@@ -21,6 +30,8 @@ const useStyles = makeStyles({
         },
        
     },
+    textField: {
+    }
     });
 
 export default useStyles;
