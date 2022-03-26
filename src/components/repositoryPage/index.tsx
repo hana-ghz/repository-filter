@@ -1,20 +1,23 @@
 import React from "react";
 
 // @logic
-
-
-
 // @local
-import RepositoryItem from "../repositoryItem";
 import RepositoryList from "../repositoryList";
-import TextInput from "../textInput";
+import SearchUser from "../searchUser";
+import useStyles from "./styles";
+
 
 const RepositoryPage = () => {
+  const classes = useStyles({});
+  const [username, setUsername] = React.useState('');
 
+  const getUsername = (user: string) => {
+    setUsername(user)
+  }
   return (
-    <div >
-      <TextInput />
-      <RepositoryList /> 
+    <div className={classes.container}>
+      <SearchUser onUserSearch={getUsername}/>
+      <RepositoryList username={username}/>
     </div>
   );
 };
