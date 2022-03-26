@@ -75,7 +75,7 @@ const RepositoryPage = () => {
 
   return ( 
     <Grid container className={classes.container}>
-      <Grid item xs={11}>
+      <Grid item  md={9}  xs={12}>
         <SearchUser onUserSearch={getUsername}/>
       </Grid>
 

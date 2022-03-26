@@ -45,7 +45,7 @@ const RepositoryItem = ({ repository }: IProps) => {
   }, [repository]);
 
   return (
-    <Grid container spacing={1}>
+    <Grid container spacing={1} className={classes.container} >
       <Grid container item xs={12} >
         <Grid item xs={12} md={8}>
           <Typography variant="h6" className={classes.repoTitle}>

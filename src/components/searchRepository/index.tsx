@@ -1,6 +1,6 @@
 import React from 'react';
 // @mui
-import { TextField, InputAdornment, IconButton } from '@material-ui/core';
+import { TextField, InputAdornment, IconButton, Grid } from '@material-ui/core';
 import SearchIcon from '@mui/icons-material/Search';
 // @local
 import useStyles from "./styles";
@@ -25,7 +25,7 @@ const SearchRepository = ({filterList}:IProps) => {
           value={searchText}
           fullWidth
           InputProps={{
-            startAdornment: <InputAdornment position="start" >
+            startAdornment: <InputAdornment position="start" className={classes.searchIcon}>
               <IconButton
                 edge="end"
                 >

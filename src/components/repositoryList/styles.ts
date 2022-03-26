@@ -10,8 +10,9 @@ const useStyles = makeStyles({
     
   },
   divider: {
-    marginBottom: "30px",
-    marginTop: "30px",
+    background:"#A0A3A8",
+
+   
   },
 });
 

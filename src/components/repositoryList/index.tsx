@@ -36,10 +36,10 @@ const RepositoryList = ({ filteredRepositories }: IProps) => {
             filteredRepositories.map((singleRepository: IRepository) => {
               return (
                 <Grid  item xs={12}>
-                  <ListItem alignItems="flex-start">
+                  <ListItem alignItems="flex-start" style={{backgroundColor:'#E3E3E4'}}>
                     <RepositoryItem repository={singleRepository} />
                   </ListItem>
-                  <Divider className={classes.divider} />
+                  <Divider classes={{root: classes.divider} }/>
                 </Grid>
               );
             })}

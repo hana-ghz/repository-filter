@@ -5,11 +5,14 @@ import { theme } from '../repositoryPage/styles';
 const useStyles = makeStyles({
 	
     container: {
-        justifyContent: 'center',
-        alignItems: 'center',
+
         marginTop:'20px',
     },
-   
+    searchIcon:{
+        '&.MuiOutlinedInput-adornedStart': {
+            paddingLeft:'0'
+        }
+    }
     
     });
 

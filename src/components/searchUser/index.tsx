@@ -47,15 +47,14 @@ const SearchUser = ({onUserSearch}:IProps) => {
   };
 
   return (
-    <div style={{width: '100%'}}>
     <form onSubmit={handleSubmit(getUser)} >
       <Grid container
+        style={{width:"100%"}}
         direction="row"
-        justifyContent="center"
+        justifyContent="space-between"
         alignItems="center"
-        spacing={2}
       >
-        <Grid item  xs={12} md={7}>
+        <Grid item  md={8} sm={12} xs={12}>
           <Controller
             render={(props) => (
               <TextField
@@ -74,12 +73,11 @@ const SearchUser = ({onUserSearch}:IProps) => {
             control={control}
           />
         </Grid>
-        <Grid  item xs={12} md={2}>
+        <Grid  item >
             <Button className={classes.submitBtn} type="submit" startIcon={<PersonOutline />} >Get User</Button>
         </Grid>
       </Grid>
       </form>
-      </div>
   );
 };
 

@@ -15,10 +15,11 @@ const useStyles = makeStyles({
             backgroundColor: '#539BF5',
             minHeight: '50px',
             minWidth: '200px',
-                [theme.breakpoints.down('sm')]: {
-                    minWidth: '100%',
+            [theme.breakpoints.down('md')]: {
+                minWidth: '100%',
+                marginTop:'15px',
 
-                },
+            },
             
         },
         '&.MuiButton-root.MuiButton-text': {
@@ -30,8 +31,7 @@ const useStyles = makeStyles({
         },
        
     },
-    textField: {
-    }
+   
     });
 
 export default useStyles;
