@@ -3,6 +3,7 @@ import axios from "axios";
 import { format } from "date-fns";
 // @material-ui
 import { Grid, Typography } from "@material-ui/core";
+import { TerminalOutlined, ModeStandbyOutlined, StarBorderOutlined} from "@mui/icons-material";
 // @local
 import useStyles from "./styles";
 
@@ -13,6 +14,8 @@ interface IRepository {
   updated_at: Date;
   default_branch: string;
   languages_url: string;
+  stargazers_count: number;
+  open_issues: number;
 }
 
 interface IProps {
@@ -28,7 +31,7 @@ const RepositoryItem = ({ repository }: IProps) => {
   const [mostUsedLanguage, setMostUsedLanguage] = React.useState("");
 
   const getMostUsedLanguages = async () => {
-    /** 
+    /**
      * Each language used in a repository has a numeric value associated
      * The most used language has the highest value
      * This function maps through the tuple-like (lanuage, its_corresponding_value) to get
@@ -71,12 +74,46 @@ const RepositoryItem = ({ repository }: IProps) => {
       </Grid>
 
       <Grid item xs={12}>
-        <Typography variant="subtitle2">{repository.description}</Typography>
+        <Typography variant="caption" style={{color:"#56545A"}}>{repository.description}</Typography>
       </Grid>
 
-      <Grid item xs={6}>
+      <Grid
+        item
+        md={3}
+        xs={12}
+        container
+        direction="row"
+        alignItems="flex-start"
+      >
+        <TerminalOutlined sx={{ fontSize: "18px", color: "#95CE2f" }} />
         <Typography variant="caption" className={classes.language}>
           {mostUsedLanguage}
+        </Typography>
+      </Grid>
+      <Grid
+        item
+        md={3}
+        xs={12}
+        container
+        direction="row"
+        alignItems="flex-start"
+      >
+        <StarBorderOutlined sx={{ fontSize: "18px", color: "#A0A3A8" }} />
+        <Typography variant="caption" className={classes.relatedInfo}>
+          {repository.stargazers_count}
+        </Typography>
+      </Grid>
+      <Grid
+        item
+        md={3}
+        xs={12}
+        container
+        direction="row"
+        alignItems="flex-start"
+      >
+        <ModeStandbyOutlined sx={{ fontSize: "18px", color: "#A0A3A8" }} />
+        <Typography variant="caption" className={classes.relatedInfo}>
+          {repository.open_issues}
         </Typography>
       </Grid>
     </Grid>

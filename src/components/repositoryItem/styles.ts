@@ -16,10 +16,17 @@ const useStyles = makeStyles({
         fontSize: "10px",
         fontWeight: 'bold'
     },
-        
-    language: {
-        fontSize: "10px",
+    relatedInfo: {
+        fontSize: "12px",
         fontWeight: 'bold',
+        color: "#A0A3A8",
+        marginLeft:"8px"
+    },
+    language: {
+        fontSize: "12px",
+        fontWeight: 'bold',
+        color: "#95CE2f",
+        marginLeft:"8px"
     },
    
     

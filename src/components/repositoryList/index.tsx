@@ -16,6 +16,8 @@ interface IRepository {
   updated_at: Date;
   default_branch: string;
   languages_url: string;
+  stargazers_count: number;
+  open_issues: number;
 }
 
 const RepositoryList = ({ filteredRepositories }: IProps) => {

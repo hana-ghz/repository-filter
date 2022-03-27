@@ -10,6 +10,7 @@ import { Grid, TextField, Button } from "@material-ui/core";
 import { PersonOutline } from "@mui/icons-material";
 // @local
 import useStyles from "./styles";
+import { Typography } from "@mui/material";
 
 interface FormValues {
   username: string;
@@ -22,8 +23,8 @@ const validationSchema = Yup.object().shape({
 
 interface IProps {
   /** onUserSearch emits the username to the parent component if the username exists
-    * handleUserNotFound emits true if the username doesn't correspond to any use in github
-  */
+   * handleUserNotFound emits true if the username doesn't correspond to any use in github
+   */
   onUserSearch: (username: string) => void;
   handleUserNotFound: (status: boolean) => void;
 }
@@ -47,14 +48,12 @@ const SearchUser = ({ onUserSearch, handleUserNotFound }: IProps) => {
       .then((result) => {
         if (result.status === 200) {
           onUserSearch(username);
-          handleUserNotFound(false)
-
+          handleUserNotFound(false);
         }
       })
       .catch((error) => {
         onUserSearch("");
-        handleUserNotFound(true)
-
+        handleUserNotFound(true);
       });
   };
 
@@ -63,12 +62,11 @@ const SearchUser = ({ onUserSearch, handleUserNotFound }: IProps) => {
       {/*handleSubmit allows testing the input against the validation schema before submitting the form*/}
       <Grid
         container
-        style={{ width: "100%" }}
         direction="row"
         justifyContent="space-between"
         alignItems="center"
       >
-        <Grid item md={8} sm={12} xs={12}>
+        <Grid item md={9} sm={12} xs={12}>
           <Controller
             render={(props) => (
               <TextField
@@ -77,17 +75,19 @@ const SearchUser = ({ onUserSearch, handleUserNotFound }: IProps) => {
                 name="username"
                 type="text"
                 margin="normal"
-                label="Username"
+                placeholder="Username"
                 variant="outlined"
+                className={classes.textField}
+
                 error={Boolean(errors.username)}
-                helperText={errors.username && errors.username.message}
               />
             )}
+            
             name="username"
             control={control}
           />
         </Grid>
-        <Grid item>
+        <Grid item md sm={12} xs={12}>
           <Button
             className={classes.submitBtn}
             type="submit"
@@ -97,7 +97,7 @@ const SearchUser = ({ onUserSearch, handleUserNotFound }: IProps) => {
           </Button>
         </Grid>
       </Grid>
-      
+      {errors.username && (<Typography className={classes.errorMsg} variant="caption">  {errors.username.message} </Typography>)}
     </form>
   );
 };

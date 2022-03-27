@@ -19,6 +19,8 @@ interface IRepository {
   updated_at: Date;
   default_branch: string;
   languages_url: string;
+  stargazers_count: number;
+  open_issues: number;
 }
 
 const RepositoryPage = () => {
@@ -86,12 +88,18 @@ const RepositoryPage = () => {
                 updated_at: new Date(singleRepo.updated_at),
                 default_branch: singleRepo.default_branch,
                 languages_url: singleRepo.languages_url,
+                open_issues: singleRepo.open_issues,
+                stargazers_count: singleRepo.stargazers_count
               };
             });
-
+            
+            setHasNotRepositories(false);
             setUserRepositories(repositories);
             setFilteredRepositories(repositories);
+
           } else {
+            setUserRepositories(null);
+            setFilteredRepositories(null);
             setHasNotRepositories(true);
           }
         })
@@ -135,7 +143,7 @@ const RepositoryPage = () => {
         </Grid>
       )}
       {username !== "" && (
-        <Grid item md={12} xs={12}>
+        <Grid item md={10} xs={12}>
           <RepositoryList filteredRepositories={filteredRepositories} />
         </Grid>
       )}

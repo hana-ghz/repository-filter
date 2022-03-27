@@ -25,7 +25,7 @@ Each item of the list has the following attributes:
 
 -Add a "select a repository feature" which would opens model with all the details related to the repository
 
--Add a "connect using github feature" which would allows the user to get his/her repsitories (including private ones)
+-Add a "connect using github feature" which would allows the user to get his/her repsitories (including private ones) + add a private/public visibility label
 
 
 *********** Feedback ******************
