@@ -10,6 +10,6 @@ const useStyles = makeStyles({
       paddingLeft: "0",
     },
   },
-});
+}, {index: 1});
 
 export default useStyles;

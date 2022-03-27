@@ -1,6 +1,6 @@
 import React from "react";
 // @material-ui
-import { Divider, List, ListItem } from "@material-ui/core";
+import { Divider, List, ListItem } from "@mui/material";
 // @local
 import RepositoryItem from "../repositoryItem";
 import useStyles from "./styles";

@@ -32,6 +32,6 @@ const useStyles = makeStyles({
     color: "#F44336",
     float: "left",
   },
-});
+}, {index: 1});
 
 export default useStyles;

@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { format } from "date-fns";
 // @material-ui
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@mui/material";
 import {
   TerminalOutlined,
   ModeStandbyOutlined,

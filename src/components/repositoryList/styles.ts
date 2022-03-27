@@ -9,6 +9,6 @@ const useStyles = makeStyles({
     height: "100%",
     margin: 0,
   },
-});
+}, {index: 1});
 
 export default useStyles;

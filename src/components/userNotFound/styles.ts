@@ -10,6 +10,6 @@ const useStyles = makeStyles({
     margin: 0,
     color: "#A0A3A8",
   },
-});
+}, {index: 999});
 
 export default useStyles;

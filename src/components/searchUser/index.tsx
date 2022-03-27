@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 // @material-ui
-import { Grid, TextField, Button, Typography } from "@material-ui/core";
+import { Grid, TextField, Button, Typography } from "@mui/material";
 import { PersonOutline } from "@mui/icons-material";
 // @local
 import useStyles from "./styles";

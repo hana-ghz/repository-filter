@@ -28,6 +28,6 @@ const useStyles = makeStyles({
     color: "#95CE2f",
     marginLeft: "8px",
   },
-});
+}, {index: 1});
 
 export default useStyles;

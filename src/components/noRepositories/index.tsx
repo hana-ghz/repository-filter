@@ -1,6 +1,6 @@
 import React from "react";
 // @material-ui
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@mui/material";
 import { DoNotDisturbAltOutlined } from "@mui/icons-material";
 // @local
 import useStyles from "./styles";

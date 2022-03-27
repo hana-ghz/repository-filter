@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { URL } from "src/App";
 // @mui
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 // @local
 import RepositoryList from "../repositoryList";
 import SearchUser from "../searchUser";
