@@ -45,14 +45,21 @@ const RepositoryItem = ({ repository }: IProps) => {
   }, [repository]);
 
   return (
-    <Grid container spacing={1} className={classes.container} >
-      <Grid container item xs={12} >
+    <Grid container spacing={1} className={classes.container}>
+      <Grid
+        container
+        item
+        xs={12}
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+      >
         <Grid item xs={12} md={8}>
           <Typography variant="h6" className={classes.repoTitle}>
             {repository.name}
           </Typography>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item >
           <Typography variant="caption" className={classes.updatedAt}>
             Updated on {format(repository.updated_at, "PP")}
           </Typography>
@@ -64,10 +71,10 @@ const RepositoryItem = ({ repository }: IProps) => {
       </Grid>
 
       <Grid item xs={6}>
-        <Typography variant="caption" className={classes.language}>{mostUsedLanguage}</Typography>
+        <Typography variant="caption" className={classes.language}>
+          {mostUsedLanguage}
+        </Typography>
       </Grid>
-
-     
     </Grid>
   );
 };

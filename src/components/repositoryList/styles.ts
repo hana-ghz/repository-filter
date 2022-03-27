@@ -9,11 +9,7 @@ const useStyles = makeStyles({
     height: "100%",
     
   },
-  divider: {
-    background:"#A0A3A8",
-
-   
-  },
+  
 });
 
 export default useStyles;

@@ -1,5 +1,5 @@
 import React from "react";
-import axios from 'axios';
+import axios from "axios";
 // @form
 import * as Yup from "yup";
 import { useForm, Controller } from "react-hook-form";
@@ -7,9 +7,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 // @material-ui
 import { Grid, TextField, Button } from "@material-ui/core";
-import {PersonOutline} from '@mui/icons-material';
+import { PersonOutline } from "@mui/icons-material";
 // @local
 import useStyles from "./styles";
+import { toast } from "react-toastify";
 
 interface FormValues {
   username: string;
@@ -19,13 +20,13 @@ const validationSchema = Yup.object().shape({
   username: Yup.string().label("Username").required(),
 });
 
-interface IProps { onUserSearch: (username: string) => void };
+interface IProps {
+  onUserSearch: (username: string) => void;
+}
 const URL = "https://api.github.com/users";
 
-
-const SearchUser = ({onUserSearch}:IProps) => {
+const SearchUser = ({ onUserSearch }: IProps) => {
   const classes = useStyles({});
-  
 
   const {
     handleSubmit,
@@ -35,26 +36,34 @@ const SearchUser = ({onUserSearch}:IProps) => {
     resolver: yupResolver(validationSchema),
   });
 
-  const  getUser = async (payload: FormValues) => {
+  const getUser = async (payload: FormValues) => {
     const { username } = payload;
-    console.log(`${URL}/${username}`)
-    await axios.get(`${URL}/${username}`).then((result) => {
-      if (result.status === 200) {
-        console.log("hel user", username)
-        onUserSearch(username);
-      }
-    }).catch((error)=> {console.log(error)})
+
+    await axios
+      .get(`${URL}/${username}`)
+      .then((result) => {
+        if (result.status === 200) {
+          onUserSearch(username);
+        }
+      })
+      .catch((error) => {
+        console.log("here");
+        toast.error("User Not Found !", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      });
   };
 
   return (
-    <form onSubmit={handleSubmit(getUser)} >
-      <Grid container
-        style={{width:"100%"}}
+    <form onSubmit={handleSubmit(getUser)}>
+      <Grid
+        container
+        style={{ width: "100%" }}
         direction="row"
         justifyContent="space-between"
         alignItems="center"
       >
-        <Grid item  md={8} sm={12} xs={12}>
+        <Grid item md={8} sm={12} xs={12}>
           <Controller
             render={(props) => (
               <TextField
@@ -64,7 +73,7 @@ const SearchUser = ({onUserSearch}:IProps) => {
                 type="text"
                 margin="normal"
                 label="Username"
-                variant="outlined" 
+                variant="outlined"
                 error={Boolean(errors.username)}
                 helperText={errors.username && errors.username.message}
               />
@@ -73,11 +82,18 @@ const SearchUser = ({onUserSearch}:IProps) => {
             control={control}
           />
         </Grid>
-        <Grid  item >
-            <Button className={classes.submitBtn} type="submit" startIcon={<PersonOutline />} >Get User</Button>
+        <Grid item>
+          <Button
+            className={classes.submitBtn}
+            type="submit"
+            startIcon={<PersonOutline />}
+          >
+            Get User
+          </Button>
         </Grid>
       </Grid>
-      </form>
+      
+    </form>
   );
 };
 

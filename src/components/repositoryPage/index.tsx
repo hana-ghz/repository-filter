@@ -75,16 +75,16 @@ const RepositoryPage = () => {
 
   return ( 
     <Grid container className={classes.container}>
-      <Grid item  md={9}  xs={12}>
+      <Grid item  md={10}  xs={12}>
         <SearchUser onUserSearch={getUsername}/>
       </Grid>
 
-      <Grid item md={9} xs={12}>
+      <Grid item md={10} xs={12}>
         <SearchRepository filterList={filterList} />
       </Grid>
 
      
-      <Grid container item xs={12} >
+      <Grid container item md={10} xs={12} >
         <RepositoryList filteredRepositories={filteredRepositories}/>
       </Grid>
     </Grid>
