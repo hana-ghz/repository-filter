@@ -1,10 +1,9 @@
-import { Divider } from '@material-ui/core';
 import { makeStyles } from '@mui/styles';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const useStyles = makeStyles({
     container: {
-       // backgroundColor:"#E3E3E4"
+       width:"100%"
     },
     repoTitle: {
         color:"#539BF5"

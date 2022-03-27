@@ -1,15 +1,10 @@
 import React from "react";
-import axios, { AxiosResponse } from "axios";
-
-// @logic
-
+import axios from "axios";
+import { format } from "date-fns";
 // @material-ui
-import { Divider, Grid, Typography } from "@material-ui/core";
-
+import { Grid, Typography } from "@material-ui/core";
 // @local
 import useStyles from "./styles";
-import { string } from "yup/lib/locale";
-import { format } from "date-fns";
 
 interface IRepository {
   name: string;

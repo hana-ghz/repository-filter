@@ -4,13 +4,11 @@ import axios from "axios";
 import * as Yup from "yup";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 // @material-ui
 import { Grid, TextField, Button } from "@material-ui/core";
 import { PersonOutline } from "@mui/icons-material";
 // @local
 import useStyles from "./styles";
-import { toast } from "react-toastify";
 
 interface FormValues {
   username: string;
@@ -22,10 +20,10 @@ const validationSchema = Yup.object().shape({
 
 interface IProps {
   onUserSearch: (username: string) => void;
+  handleUserNotFound: (status: boolean) => void;
 }
-const URL = "https://api.github.com/users";
 
-const SearchUser = ({ onUserSearch }: IProps) => {
+const SearchUser = ({ onUserSearch, handleUserNotFound }: IProps) => {
   const classes = useStyles({});
 
   const {
@@ -44,13 +42,12 @@ const SearchUser = ({ onUserSearch }: IProps) => {
       .then((result) => {
         if (result.status === 200) {
           onUserSearch(username);
+          handleUserNotFound(false)
+
         }
       })
       .catch((error) => {
-        console.log("here");
-        toast.error("User Not Found !", {
-          position: toast.POSITION.TOP_RIGHT,
-        });
+        handleUserNotFound(true)
       });
   };
 

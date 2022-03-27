@@ -1,6 +1,6 @@
 import React from 'react';
 // @mui
-import { TextField, InputAdornment, IconButton, Grid } from '@material-ui/core';
+import { TextField, InputAdornment, IconButton } from '@material-ui/core';
 import SearchIcon from '@mui/icons-material/Search';
 // @local
 import useStyles from "./styles";
