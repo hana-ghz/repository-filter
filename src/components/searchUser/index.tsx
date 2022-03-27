@@ -6,11 +6,10 @@ import * as Yup from "yup";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 // @material-ui
-import { Grid, TextField, Button } from "@material-ui/core";
+import { Grid, TextField, Button, Typography } from "@material-ui/core";
 import { PersonOutline } from "@mui/icons-material";
 // @local
 import useStyles from "./styles";
-import { Typography } from "@mui/material";
 
 interface FormValues {
   username: string;
@@ -78,11 +77,9 @@ const SearchUser = ({ onUserSearch, handleUserNotFound }: IProps) => {
                 placeholder="Username"
                 variant="outlined"
                 className={classes.textField}
-
                 error={Boolean(errors.username)}
               />
             )}
-            
             name="username"
             control={control}
           />
@@ -97,7 +94,12 @@ const SearchUser = ({ onUserSearch, handleUserNotFound }: IProps) => {
           </Button>
         </Grid>
       </Grid>
-      {errors.username && (<Typography className={classes.errorMsg} variant="caption">  {errors.username.message} </Typography>)}
+      {errors.username && (
+        <Typography className={classes.errorMsg} variant="caption">
+          {" "}
+          {errors.username.message}{" "}
+        </Typography>
+      )}
     </form>
   );
 };

@@ -3,7 +3,11 @@ import axios from "axios";
 import { format } from "date-fns";
 // @material-ui
 import { Grid, Typography } from "@material-ui/core";
-import { TerminalOutlined, ModeStandbyOutlined, StarBorderOutlined} from "@mui/icons-material";
+import {
+  TerminalOutlined,
+  ModeStandbyOutlined,
+  StarBorderOutlined,
+} from "@mui/icons-material";
 // @local
 import useStyles from "./styles";
 
@@ -30,25 +34,25 @@ const RepositoryItem = ({ repository }: IProps) => {
   const classes = useStyles({});
   const [mostUsedLanguage, setMostUsedLanguage] = React.useState("");
 
-  const getMostUsedLanguages = async () => {
-    /**
-     * Each language used in a repository has a numeric value associated
-     * The most used language has the highest value
-     * This function maps through the tuple-like (lanuage, its_corresponding_value) to get
-     * the entry with the highest number and then extracts the associated language
-     * **/
-    await axios.get<IResult>(repository.languages_url).then((result) => {
-      const maxTuple = Object.entries(result.data).reduce(
-        (previousValue, currentValue) =>
-          previousValue[1] > currentValue[1] ? previousValue : currentValue
-      );
-      setMostUsedLanguage(maxTuple[0]);
-    });
-  };
-
   React.useEffect(() => {
+    const getMostUsedLanguages = async () => {
+      /**
+       * Each language used in a repository has a numeric value associated
+       * The most used language has the highest value
+       * This function maps through the tuple-like (lanuage, its_corresponding_value) to get
+       * the entry with the highest number and then extracts the associated language
+       * **/
+      await axios.get<IResult>(repository.languages_url).then((result) => {
+        const maxTuple = Object.entries(result.data).reduce(
+          (previousValue, currentValue) =>
+            previousValue[1] > currentValue[1] ? previousValue : currentValue
+        );
+        setMostUsedLanguage(maxTuple[0]);
+      });
+    };
+
     getMostUsedLanguages();
-  }, [repository]);
+  }, [repository, setMostUsedLanguage]);
 
   return (
     <Grid container spacing={1} className={classes.container}>
@@ -74,7 +78,9 @@ const RepositoryItem = ({ repository }: IProps) => {
       </Grid>
 
       <Grid item xs={12}>
-        <Typography variant="caption" style={{color:"#56545A"}}>{repository.description}</Typography>
+        <Typography variant="caption" style={{ color: "#56545A" }}>
+          {repository.description}
+        </Typography>
       </Grid>
 
       <Grid

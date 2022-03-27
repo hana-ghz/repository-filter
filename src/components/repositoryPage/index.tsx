@@ -8,9 +8,8 @@ import RepositoryList from "../repositoryList";
 import SearchUser from "../searchUser";
 import SearchRepository from "../searchRepository";
 import UserNotFound from "../userNotFound";
-import useStyles from "./styles";
-import { isConstructorDeclaration } from "typescript";
 import NoRepositories from "../noRepositories";
+import useStyles from "./styles";
 
 interface IRepository {
   name: string;
@@ -29,13 +28,11 @@ const RepositoryPage = () => {
   const [userNotFound, setUserNotFound] = React.useState(false);
   const [hasNotRepositories, setHasNotRepositories] = React.useState(false);
 
-  const [userRepositories, setUserRepositories] = React.useState<
-    IRepository[] | null
-  >(null);
+  const [userRepositories, setUserRepositories] =
+    React.useState<IRepository[] | null>(null);
 
-  const [filteredRepositories, setFilteredRepositories] = React.useState<
-    IRepository[] | null
-  >(null);
+  const [filteredRepositories, setFilteredRepositories] =
+    React.useState<IRepository[] | null>(null);
 
   const getUsername = (user: string) => {
     /**handles the username emitted from the searchUser child component */
@@ -89,14 +86,13 @@ const RepositoryPage = () => {
                 default_branch: singleRepo.default_branch,
                 languages_url: singleRepo.languages_url,
                 open_issues: singleRepo.open_issues,
-                stargazers_count: singleRepo.stargazers_count
+                stargazers_count: singleRepo.stargazers_count,
               };
             });
-            
+
             setHasNotRepositories(false);
             setUserRepositories(repositories);
             setFilteredRepositories(repositories);
-
           } else {
             setUserRepositories(null);
             setFilteredRepositories(null);
@@ -131,12 +127,12 @@ const RepositoryPage = () => {
       </Grid>
 
       {/* If the userSearch doesn't fetch a user, a modal with a usernotfound notice is displayed */}
-      { userNotFound && (
+      {userNotFound && (
         <Grid item md={12} xs={12}>
           <UserNotFound />
         </Grid>
       )}
-       {/* If the user has not repositories (the array of the repositorie fetched is 0),  a modal indicating that he has no repositories is displayed */}
+      {/* If the user has not repositories (the array of the repositorie fetched is 0),  a modal indicating that he has no repositories is displayed */}
       {username !== "" && hasNotRepositories && (
         <Grid item md={12} xs={12}>
           <NoRepositories username={username} />

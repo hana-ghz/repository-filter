@@ -18,7 +18,7 @@ const useStyles = makeStyles(() =>
     container: {
       paddingRight: "15%",
       paddingLeft: "15%",
-      paddingTop:"50px",
+      paddingTop: "50px",
       justifyContent: "center",
       alignItems: "center",
       height: "100%",

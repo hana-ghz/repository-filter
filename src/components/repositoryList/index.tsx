@@ -22,7 +22,7 @@ interface IRepository {
 
 const RepositoryList = ({ filteredRepositories }: IProps) => {
   const classes = useStyles({});
-  
+
   return (
     <div className={classes.root}>
       <List>

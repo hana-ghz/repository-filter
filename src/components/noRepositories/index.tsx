@@ -8,7 +8,7 @@ import useStyles from "./styles";
 interface IProps {
   username: string;
 }
-const NoRepositories = ({username}:IProps) => {
+const NoRepositories = ({ username }: IProps) => {
   const classes = useStyles({});
 
   return (
