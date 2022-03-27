@@ -27,10 +27,10 @@ const RepositoryList = ({ filteredRepositories }: IProps) => {
     <div className={classes.root}>
       <List>
         {filteredRepositories &&
-          filteredRepositories.map((singleRepository: IRepository) => {
+          filteredRepositories.map((singleRepository: IRepository, index) => {
             return (
               <>
-                <ListItem alignItems="flex-start">
+                <ListItem alignItems="flex-start" key={index}>
                   <RepositoryItem repository={singleRepository} />
                 </ListItem>
                 <Divider />
