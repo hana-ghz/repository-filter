@@ -14,7 +14,7 @@ const SearchRepository = ({ filterList }: IProps) => {
   const classes = useStyles({});
 
   React.useEffect(() => {
-    // on every change in the search bar, the filtering function gets triggered
+    // on every change in the search bar, the filtering function on the parent function gets triggered
     filterList(searchText);
   }, [searchText, filterList]);
 
