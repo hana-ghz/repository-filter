@@ -18,6 +18,7 @@ interface IRepository {
 interface IProps {
   repository: IRepository;
 }
+
 interface IResult {
   [key: string]: Number;
 }
@@ -27,9 +28,16 @@ const RepositoryItem = ({ repository }: IProps) => {
   const [mostUsedLanguage, setMostUsedLanguage] = React.useState("");
 
   const getMostUsedLanguages = async () => {
+    /** 
+     * Each language used in a repository has a numeric value associated
+     * The most used language has the highest value
+     * This function maps through the tuple-like (lanuage, its_corresponding_value) to get
+     * the entry with the highest number and then extracts the associated language
+     * **/
     await axios.get<IResult>(repository.languages_url).then((result) => {
-      const maxTuple = Object.entries(result.data).reduce((e, v) =>
-        e[1] > v[1] ? e : v
+      const maxTuple = Object.entries(result.data).reduce(
+        (previousValue, currentValue) =>
+          previousValue[1] > currentValue[1] ? previousValue : currentValue
       );
       setMostUsedLanguage(maxTuple[0]);
     });
@@ -54,8 +62,9 @@ const RepositoryItem = ({ repository }: IProps) => {
             {repository.name}
           </Typography>
         </Grid>
-        <Grid item >
+        <Grid item>
           <Typography variant="caption" className={classes.updatedAt}>
+            {/* formating the date in PP allows to display it a "Feb 15, 2021" format  */}
             Updated on {format(repository.updated_at, "PP")}
           </Typography>
         </Grid>

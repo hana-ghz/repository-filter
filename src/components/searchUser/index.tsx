@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { URL } from "src/App";
 // @form
 import * as Yup from "yup";
 import { useForm, Controller } from "react-hook-form";
@@ -14,11 +15,15 @@ interface FormValues {
   username: string;
 }
 
+/**This is the validation schema linked to the username field */
 const validationSchema = Yup.object().shape({
   username: Yup.string().label("Username").required(),
 });
 
 interface IProps {
+  /** onUserSearch emits the username to the parent component if the username exists
+    * handleUserNotFound emits true if the username doesn't correspond to any use in github
+  */
   onUserSearch: (username: string) => void;
   handleUserNotFound: (status: boolean) => void;
 }
@@ -47,12 +52,15 @@ const SearchUser = ({ onUserSearch, handleUserNotFound }: IProps) => {
         }
       })
       .catch((error) => {
+        onUserSearch("");
         handleUserNotFound(true)
+
       });
   };
 
   return (
     <form onSubmit={handleSubmit(getUser)}>
+      {/*handleSubmit allows testing the input against the validation schema before submitting the form*/}
       <Grid
         container
         style={{ width: "100%" }}

@@ -20,24 +20,22 @@ interface IRepository {
 
 const RepositoryList = ({ filteredRepositories }: IProps) => {
   const classes = useStyles({});
-
+  
   return (
     <div className={classes.root}>
-     
-        <List>
-          {filteredRepositories &&
-            filteredRepositories.map((singleRepository: IRepository) => {
-              return (
-                <>
-                  <ListItem alignItems="flex-start">
-                    <RepositoryItem repository={singleRepository} />
-                  </ListItem>
-                  <Divider/>
-                </>
-              );
-            })}
-        </List>
-      
+      <List>
+        {filteredRepositories &&
+          filteredRepositories.map((singleRepository: IRepository) => {
+            return (
+              <>
+                <ListItem alignItems="flex-start">
+                  <RepositoryItem repository={singleRepository} />
+                </ListItem>
+                <Divider />
+              </>
+            );
+          })}
+      </List>
     </div>
   );
 };
